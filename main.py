@@ -35,6 +35,12 @@ def main() -> None:
     lines = written.rstrip("\n").split("\n")
     assert len(lines) == 1, "entry must be exactly one line"
     assert lines[0].strip(), "entry must not be only white space"
+    # One sentence doing the work: exactly one terminal full stop, and no
+    # stray sentence break hiding inside the line.
+    assert lines[0] == lines[0].strip(), "entry must not carry stray spaces"
+    assert written.count(".") == 1 and written.rstrip("\n").endswith("."), (
+        "entry must be a single sentence ending in one full stop"
+    )
 
 
 if __name__ == "__main__":
